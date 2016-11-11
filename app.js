@@ -8,6 +8,9 @@ const bodyParser = require('body-parser')
 const routes = require('./routes/index')
 const users = require('./routes/users')
 
+const API = {}
+API.instrumentos = require('./routes/api/instrumentos')
+
 const app = express()
 
 // view engine setup
@@ -24,6 +27,9 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', routes)
 app.use('/users', users)
+
+// API JSON
+app.use('/api/instrumentos', API.instrumentos)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
